@@ -1,6 +1,5 @@
 # Meridian — Orbital Imaging Network
 
-> 🌐 **Live Demo:** [https://meridian-pi-blue.vercel.app](https://meridian-pi-blue.vercel.app)
 Deep-space multispectral satellite imaging network website featuring live WebGL Nebula shader, pinned descent telemetry, and procedural orbital cartography.
 
 ## Quick Start
