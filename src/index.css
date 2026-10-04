@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #f2ecdf;
+  --color-cream: #e8e0cd;
+  --color-sand: #c9bda4;
+  --color-ink: #171410;
+  --color-coal: #100e0a;
+  --color-bronze: #a6732d;
+  --color-bronzelt: #c68e45;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Jost", "Avenir", "Helvetica Neue", sans-serif;
+
+  /* Folio hub */
+  --color-hub: #0b0b0c;
+
+  /* Meridian */
+  --color-void: #04050a;
+  --color-deep: #0a0d18;
+  --color-snow: #eef1f8;
+  --color-ash: #8b93a7;
+  --color-ember: #ff5b2e;
+  --color-ion: #7df9d0;
+
+  /* Oddity */
+  --color-paper: #f1efe8;
+  --color-carbon: #0c0c0c;
+  --color-cobalt: #2a44ff;
+  --color-lime: #d6ff3f;
+  --color-tomato: #ff5a36;
+  --color-blush: #ffc2dc;
+
+  --font-grot: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-serifi: "Instrument Serif", "Georgia", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-brico: "Bricolage Grotesque", "Inter Tight", "Helvetica Neue", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+body {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-bronze);
+  color: var(--color-bone);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bone);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-ink) 35%, transparent);
+  border-radius: 999px;
+  border: 2px solid var(--color-bone);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-bronze);
+  outline-offset: 3px;
+}
+
+/* ---------- signature motions ---------- */
+
+@keyframes rise {
+  from {
+    transform: translateY(115%) rotate(1.2deg);
+  }
+  to {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+.hero-line {
+  animation: rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 1.15s);
+  will-change: transform;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 42s linear infinite;
+  will-change: transform;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.11);
+  }
+}
+.kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spinSlow 26s linear infinite;
+}
+
+@keyframes fadeSwap {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-swap {
+  animation: fadeSwap 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes drawerIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.drawer-in {
+  animation: drawerIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.backdrop-in {
+  animation: backdropIn 0.4s ease both;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.toast-in {
+  animation: toastIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.4;
+  }
+}
+.pulse-dot {
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* masked line helper */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* outlined display type */
+.text-hollow {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-bone) 30%, transparent);
+}
+.text-hollow-ink {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 35%, transparent);
+}
+
+/* film grain overlay */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* underline sweep for links */
+.link-sweep {
+  position: relative;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-sweep:hover::after,
+.link-sweep:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- shared: multi-site ---------- */
+
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--stroke, currentColor);
+}
+
+@keyframes curtainLabel {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.curtain-label {
+  animation: curtainLabel 0.5s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-line,
+  .marquee-track,
+  .kenburns,
+  .spin-slow,
+  .pulse-dot,
+  .blink,
+  .curtain-label {
+    animation: none !important;
+  }
+  .fade-swap,
+  .drawer-in,
+  .backdrop-in,
+  .toast-in {
+    animation-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
